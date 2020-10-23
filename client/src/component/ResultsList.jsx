@@ -6,11 +6,14 @@ import ReactDOM from 'react-dom';
 function ResultsList(props) {
   return(
     <div>
-      {props.results.map(result => {
-        return <Result result={result}/>
-      })}
     </div>
   )
 }
 
 export default ResultsList;
+
+/* <br></br>
+{props.results.map(result => {
+  return <Result result={result}/>
+})}
+<br></br> */

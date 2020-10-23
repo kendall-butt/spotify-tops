@@ -1,3 +1,11 @@
 fileignoreconfig:
+- filename: client/dist/bundle.js
+  checksum: ebdc7f713e2853a92c1cde621d790a0042bb0736f0f112a7e019a460dedd0ed7
+- filename: client/dist/bundle.js.map
+  checksum: 4b8e4b95f613e010a4a962fcdfc71d58aeb5ca0e589e0ba161a675a13f9ffaf9
+- filename: client/src/config/trefle.js
+  checksum: c1fefcefab9e71b0dafd6cfdf10dcaea370537ce35cb09122ed4b5b69b8fb2a6
+- filename: client/src/exampleData.js
+  checksum: 3bf7625665e5222b195f1dfc8e05fe7f6e9a7c5a5b1d67b1a8092be6351bacc1
 - filename: package-lock.json
-  checksum: 11ace2f1fd4cc038d0cfc17618c36a3eb5fde1cc61a48a2b1524c8a10b28d752
+  checksum: 902d42585c67fbee939cc5b6d46ba4cfce150b8630b024f7160eb007a913a181

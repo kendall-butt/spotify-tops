@@ -1,0 +1,3 @@
+var SPOTIFY_CLIENT_ID = '8da67a5154734d75a87eb6f788362b36';
+
+export default SPOTIFY_CLIENT_ID;

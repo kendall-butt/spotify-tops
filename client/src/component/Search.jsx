@@ -2,14 +2,16 @@ import App from './App.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 function Search(props) {
   return (
     <div className="search">
-      <form >
-        <input type="text" value={props.value} onChange={props.handleChange} />
-      </form>
-      <Button variant="contained"  color="green" onClick={(e) => { props.handleSearch(e)}}>Search for Plants</Button>
+      <Button
+        variant="contained"
+        color="green"
+        onClick={props.handleAuth}
+        >Get top artists</Button>
     </div>
   );
 }
