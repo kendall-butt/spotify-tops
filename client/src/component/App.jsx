@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import authorize from '../authorize.js';
 import SPOTIFY_CLIENT_ID from '../config/client.js';
-import { Button } from '@material-ui/core';
-
-// import searchTrefle from '../searchTrefle.js';
-// import TREFLE_API_KEY from '../config/trefle.js';
 import Search from './Search.jsx';
 import ResultsList from './ResultsList.jsx';
-import exampleData from '../exampleData.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Button } from '@material-ui/core';
 
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const redirect_uri = 'http://localhost:3000/';
@@ -33,13 +28,14 @@ window.location.hash = "";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.getTopArtistsAllTime = this.getTopArtistsAllTime.bind(this);
-    this.authorize = authorize;
+    this.getTopResults = this.getTopResults.bind(this);
     this.state = {
-      value: '',
-      results: exampleData,
-      me: null,
-      token: null
+      token: null,
+      display: null,
+      topArtistsAllTime: null,
+      topArtistsThisMonth: null,
+      topSongsAllTime: null,
+      topSongsThisMonth: null,
     };
   }
 
@@ -52,21 +48,49 @@ class App extends React.Component {
     }
   }
 
-  getTopArtistsAllTime() {
-    axios.get('/top-artists-all-time', {
+  getTopResults(id) {
+    console.log(id)
+    let that = this;
+    axios.get(`/${id}`, {
       params: {
         token: this.state.token
       }
     })
       .then(function(response) {
-        console.log(response, ' hi')
+        that.setState({
+          [`${id}`]: response.data,
+          display: `${id}`
+        })
+        console.log('topSongsAllTime', that.state.topSongsAllTime)
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(that.state.topSongsAllTime);
       })
   }
 
+
+// ** TODO: conditionally render the login button **
   render() {
+    let displayResultList;
+
+    let whichDisplay = this.state.display;
+    let resultList;
+    if (whichDisplay === 'topArtistsAllTime') {
+      resultList = this.state.topArtistsAllTime;
+    } else if (whichDisplay === 'topArtistsThisMonth') {
+      resultList = this.state.topArtistsThisMonth
+    } else if (whichDisplay === 'topSongsAllTime') {
+      resultList = this.state.topSongsAllTime
+    } else if (whichDisplay === 'topSongsThisMonth') {
+      resultList = this.state.topSongsThisMonth
+    } else {
+      resultList = [1,2,3,4,5]
+    }
+
+    if (this.state.display) {
+      displayResultList = <ResultsList resultList={resultList} />
+    }
+
     return (
       <React.Fragment>
         <CssBaseline />
@@ -77,12 +101,12 @@ class App extends React.Component {
             color="green"
             href={`${authEndpoint}client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes.join("%20")}`}
           >Login to Spotify</Button>
-          <ResultsList results={this.state.results} />
           <br></br>
           <Search
-            token={this.state.token}
-            getTopArtistsAllTime={this.getTopArtistsAllTime}
+            getTopResults={this.getTopResults}
           />
+          <br></br>
+          {displayResultList}
         </div>
     </React.Fragment>
     );
@@ -96,34 +120,3 @@ ReactDOM.render(
 );
 
 export default App;
-
-  // handleSearch(e) {
-  //   e.preventDefault();
-  //   let searchString = this.state.value;
-  //   this.searchTrefle(searchString);
-  //   // TODO:
-  //   // this.setState({ results: API RESPONSE })
-  // }
-
-  // handleChange(e) {
-  //   this.setState({ value: e.target.value });
-  // }
-
-// handleAuth() {
-//   axios.get('/authorize')
-  // let popup = window.open(`https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:3000/`)
-
-  // window.spotifyCallback = (payload) => {
-  //   popup.close()
-  //   axios.get({
-  //     url: 'https://api.spotify.com/v1/me',
-  //     headers: {
-  //       'Authorization': `Bearer ${payload}`
-  //     }
-  //   }).then(response => {
-  //     return response.json()
-  //   }).then(data => {
-  //     this.state.me = data;
-  //   })
-  // }
-// }

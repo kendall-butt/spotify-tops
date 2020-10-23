@@ -21,20 +21,33 @@ const useStyles = makeStyles({
 
 function Result(props) {
   const classes = useStyles();
-
+  let isSong = props.result.album;
+  let image, artistName, songName, releaseDate, genre;
+  if (isSong) {
+    image = props.result.album.images[0].url;
+    artistName = props.result.artists[0].name;
+    songName = props.result.name;
+    releaseDate = props.result.release_date;
+  } else {
+    image = props.result.images[0].url;
+    artistName = props.result.name;
+    genre = props.result.genres[0];
+  }
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.result.image_url}
+          image={image}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h4">
-            {props.result.common_name}
+            Artist Name: {artistName}
           </Typography>
           <Typography gutterBottom>
-            {props.result.scientific_name}
+            Genre: {genre}
+            Song: {songName}
+            Release Date: {releaseDate}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -42,8 +55,8 @@ function Result(props) {
         <Button size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary">
-          Learn More
+        <Button size="small" color="primary" href={props.result.href}>
+          Visit Artist Spotify Profile
         </Button>
       </CardActions>
     </Card>

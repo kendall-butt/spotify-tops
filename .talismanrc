@@ -1,8 +1,8 @@
 fileignoreconfig:
 - filename: client/dist/bundle.js
-  checksum: b78f45411b3bd2c2c829e0f0c5b2ed3748fc735354b056eedcbf8ca2a35efb4c
+  checksum: 171745bc0fa98a7395c9f4fe498d31903cb361030c95400ced1d6ba722cbfe59
 - filename: client/dist/bundle.js.map
-  checksum: e98c841374941d34fac5d6f68db13e4bd9ea0c969cd9185cf8c0a416c7a97a3b
+  checksum: ca1b94999f93757cf8da8d16df72d3cae403f9cc059ea459bb234464b7207980
 - filename: client/src/config/client.js
   checksum: c2379ba27d0c9c0950a80f3cb1d64fb3a690b1622a86176e0c5eb89d0d90a6dc
 - filename: client/src/config/trefle.js
