@@ -10,7 +10,7 @@ function Search(props) {
       <Button
         variant="contained"
         color="green"
-        onClick={props.handleAuth}
+        onClick={props.getTopArtistsAllTime}
         >Get top artists</Button>
     </div>
   );

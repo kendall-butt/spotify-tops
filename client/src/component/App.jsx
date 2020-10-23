@@ -33,10 +33,7 @@ window.location.hash = "";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
-    // this.handleAuth = this.handleAuth.bind(this);
-    // this.searchTrefle = searchTrefle;
+    this.getTopArtistsAllTime = this.getTopArtistsAllTime.bind(this);
     this.authorize = authorize;
     this.state = {
       value: '',
@@ -55,6 +52,20 @@ class App extends React.Component {
     }
   }
 
+  getTopArtistsAllTime() {
+    axios.get('/top-artists-all-time', {
+      params: {
+        token: this.state.token
+      }
+    })
+      .then(function(response) {
+        console.log(response, ' hi')
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -69,8 +80,8 @@ class App extends React.Component {
           <ResultsList results={this.state.results} />
           <br></br>
           <Search
-            handleAuth={this.handleAuth}
             token={this.state.token}
+            getTopArtistsAllTime={this.getTopArtistsAllTime}
           />
         </div>
     </React.Fragment>

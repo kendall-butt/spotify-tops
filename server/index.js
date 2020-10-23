@@ -7,26 +7,29 @@ let SPOTIFY_CLIENT_ID = '8da67a5154734d75a87eb6f788362b36';
 
 app.use(express.static('./client/dist'))
 
-app.get('/authorize', (req, res) => {
-  res.redirect(`https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:3000/`)
-  // axios({
-  //   url: 'https://accounts.spotify.com/authorize',
-  //   method: 'get',
-  //   params: {
-  //     client_id: SPOTIFY_CLIENT_ID,
-  //     response_type: 'token',
-  //     redirect_uri: 'http://localhost:3000/'
-  //   }
-  // })
-  //   .then(function (response) {
-  //     console.log(response.request)
-  //     res.send(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   })
+app.get('/top-artists-all-time', (req, res) => {
+  axios({
+    url: 'https://api.spotify.com/v1/me/top/artists',
+    method: 'get',
+    headers: {
+      Authorization: "Bearer " + req.query.token
+    },
+    params: {
+      limit: 10,
+      time_range: 'short_term'
+    }
+  })
+    .then(function (response) {
+      res.send(response.data.items);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+// res.redirect(`https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:3000/`)
