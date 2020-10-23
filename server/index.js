@@ -2,8 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const axios = require('axios');
-let SPOTIFY_CLIENT_ID = '8da67a5154734d75a87eb6f788362b36';
-// let url = 'https://accounts.spotify.com/authorize';
+const controller = require('./controller.js');
 
 app.use(express.static('./client/dist'))
 
@@ -20,7 +19,7 @@ app.get('/topArtistsAllTime', (req, res) => {
     }
   })
     .then(function (response) {
-      res.send(response.data.items);
+      return controller.postArtistsAll(response.data.items, res)
     })
     .catch(function (error) {
       console.log(error);
@@ -40,7 +39,7 @@ app.get('/topArtistsThisMonth', (req, res) => {
     }
   })
     .then(function (response) {
-      res.send(response.data.items);
+      return controller.postArtistsMonth(response.data.items, res)
     })
     .catch(function (error) {
       console.log(error);
@@ -60,7 +59,7 @@ app.get('/topSongsAllTime', (req, res) => {
     }
   })
     .then(function (response) {
-      res.send(response.data.items);
+      return controller.postSongsAll(response.data.items, res)
     })
     .catch(function (error) {
       console.log(error);
@@ -80,7 +79,7 @@ app.get('/topSongsThisMonth', (req, res) => {
     }
   })
     .then(function (response) {
-      res.send(response.data.items);
+      return controller.postSongsMonth(response.data.items, res)
     })
     .catch(function (error) {
       console.log(error);
@@ -90,6 +89,3 @@ app.get('/topSongsThisMonth', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-
-
-// res.redirect(`https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:3000/`)

@@ -49,7 +49,6 @@ class App extends React.Component {
   }
 
   getTopResults(id) {
-    console.log(id)
     let that = this;
     axios.get(`/${id}`, {
       params: {
@@ -61,7 +60,6 @@ class App extends React.Component {
           [`${id}`]: response.data,
           display: `${id}`
         })
-        console.log('topSongsAllTime', that.state.topSongsAllTime)
       })
       .catch(function (error) {
         console.log(that.state.topSongsAllTime);
@@ -71,6 +69,8 @@ class App extends React.Component {
 
 // ** TODO: conditionally render the login button **
   render() {
+    let displayLoginButton;
+    let displaySearchButtons;
     let displayResultList;
 
     let whichDisplay = this.state.display;
@@ -91,20 +91,28 @@ class App extends React.Component {
       displayResultList = <ResultsList resultList={resultList} />
     }
 
+    if (!this.state.token) {
+      displayLoginButton = <Button
+        variant="contained"
+        color="green"
+        href={`${authEndpoint}client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes.join("%20")}`}
+      >Login to Spotify</Button>
+    }
+
+    if (this.state.token) {
+      displaySearchButtons = <Search
+        getTopResults={this.getTopResults}
+      />
+    }
+
     return (
       <React.Fragment>
         <CssBaseline />
         <div>
           <h1>Top Artists</h1>
-          <Button
-            variant="contained"
-            color="green"
-            href={`${authEndpoint}client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes.join("%20")}`}
-          >Login to Spotify</Button>
+          {displayLoginButton}
           <br></br>
-          <Search
-            getTopResults={this.getTopResults}
-          />
+          {displaySearchButtons}
           <br></br>
           {displayResultList}
         </div>

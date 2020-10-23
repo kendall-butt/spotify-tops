@@ -27,7 +27,7 @@ function Result(props) {
     image = props.result.album.images[0].url;
     artistName = props.result.artists[0].name;
     songName = props.result.name;
-    releaseDate = props.result.release_date;
+    releaseDate = props.result.album.release_date;
   } else {
     image = props.result.images[0].url;
     artistName = props.result.name;
