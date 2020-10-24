@@ -1,15 +1,17 @@
 fileignoreconfig:
 - filename: client/dist/bundle.js
-  checksum: 5043db96da22ed7c19fd7e956640d4e2407ddd4d0bc6d727ef223d463d17f0aa
+  checksum: 77302639c1d3185b53ea09621f18d7dc9f588b2745cb5806b370a56f8e6cfd8c
 - filename: client/dist/bundle.js.map
-  checksum: 46436a521a3eedcf534167bd976ec2982e433487635882335011c2ce46cfa2bf
+  checksum: d65a30e1a000612115af42aa2bb219d11eab3914afa68c220809c830fdc50070
 - filename: client/src/config/client.js
   checksum: c2379ba27d0c9c0950a80f3cb1d64fb3a690b1622a86176e0c5eb89d0d90a6dc
 - filename: client/src/config/trefle.js
   checksum: c1fefcefab9e71b0dafd6cfdf10dcaea370537ce35cb09122ed4b5b69b8fb2a6
 - filename: client/src/exampleData.js
   checksum: 3bf7625665e5222b195f1dfc8e05fe7f6e9a7c5a5b1d67b1a8092be6351bacc1
+- filename: db/schema.sql
+  checksum: 69902271fb4c609208a8d4d198638a22637456e12f0e4ce1257b5fb7c4be1b1b
 - filename: package-lock.json
-  checksum: 902d42585c67fbee939cc5b6d46ba4cfce150b8630b024f7160eb007a913a181
+  checksum: e8ca8424a6d872056ebf2b5dd94d705b811e2c4ea60c823300e528020b50060f
 - filename: server/index.js
   checksum: a335c987d4adebeae0926427a87b821dfe44f68c7824a1bccdf29c0d0214490f

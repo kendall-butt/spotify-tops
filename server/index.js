@@ -14,7 +14,7 @@ app.get('/topArtistsAllTime', (req, res) => {
       Authorization: "Bearer " + req.query.token
     },
     params: {
-      limit: 5,
+      limit: 50,
       time_range: 'long_term'
     }
   })
@@ -34,7 +34,7 @@ app.get('/topArtistsThisMonth', (req, res) => {
       Authorization: "Bearer " + req.query.token
     },
     params: {
-      limit: 5,
+      limit: 50,
       time_range: 'short_term'
     }
   })
@@ -54,7 +54,7 @@ app.get('/topSongsAllTime', (req, res) => {
       Authorization: "Bearer " + req.query.token
     },
     params: {
-      limit: 5,
+      limit: 50,
       time_range: 'long_term'
     }
   })
@@ -74,7 +74,7 @@ app.get('/topSongsThisMonth', (req, res) => {
       Authorization: "Bearer " + req.query.token
     },
     params: {
-      limit: 5,
+      limit: 50,
       time_range: 'short_term'
     }
   })

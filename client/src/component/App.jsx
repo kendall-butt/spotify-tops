@@ -5,6 +5,7 @@ import Search from './Search.jsx';
 import ResultsList from './ResultsList.jsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Button } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const redirect_uri = 'http://localhost:3000/';
@@ -108,14 +109,14 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <div>
-          <h1>Top Artists</h1>
+        <Box m={8}>
+          <h1>Spotify: My Top</h1>
           {displayLoginButton}
           <br></br>
           {displaySearchButtons}
           <br></br>
           {displayResultList}
-        </div>
+        </Box>
     </React.Fragment>
     );
   }
